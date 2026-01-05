@@ -1,0 +1,34 @@
+---
+interface User {
+  name: {
+    first: string;
+    last: string;
+  };
+  email: string;
+  picture: {
+    large: string;
+    medium: string;
+    thumbnail: string;
+  };
+}
+interface RandomUserResponse {
+  results: User[];
+};
+await new Promise( resolve => setTimeout(resolve, 2000));
+const response = await fetch('https://randomuser.me/api');
+const data = (await response.json()) as RandomUserResponse;
+const user:User = data.results[0];
+---
+<div class="user-card">
+  <img src={user.picture.large} alt={user.name.first} />
+  <p>Nombre: {user.name.first} {user.name.last}</p>
+  <p>Email: {user.email}</p>
+</div>
+
+<style>
+.user-card {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+</style>
