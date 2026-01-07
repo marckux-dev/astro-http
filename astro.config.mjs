@@ -22,4 +22,9 @@ export default defineConfig({
   }),
   */
   adapter: cloudflare(),
+  vite: {
+    ssr: {
+      noExternal: ['cssesc'],
+    },
+  },
 });
