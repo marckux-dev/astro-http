@@ -21,10 +21,17 @@ export default defineConfig({
     mode: 'standalone',
   }),
   */
-  adapter: cloudflare(),
+  image: {
+    service: {
+      entrypoint: 'astro/assets/service/noop'
+    }
+  },
+  adapter: cloudflare({
+    imageService: 'cloudflare'
+  }),
   vite: {
     ssr: {
-      noExternal: ['cssesc'],
+      external: ['cssesc'],
     },
   },
 });
